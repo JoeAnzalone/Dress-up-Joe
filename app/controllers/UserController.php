@@ -11,13 +11,22 @@
 
 class UserController extends BaseController {
 
+    protected $layout = 'layouts.default';
+
+    public function getIndex()
+    {
+        $data['users'] = User::all();
+
+        $this->layout->content = View::make('users.index', $data);
+    }
+
     /**
      * Displays the form for account creation
      *
      */
     public function create()
     {
-        return View::make(Config::get('confide::signup_form'));
+        $this->layout->content = View::make(Config::get('confide::signup_form'));
     }
 
     /**
@@ -65,13 +74,13 @@ class UserController extends BaseController {
     {
         if( Confide::user() )
         {
-            // If user is logged, redirect to internal 
+            // If user is logged, redirect to internal
             // page, change it to '/admin', '/dashboard' or something
             return Redirect::to('/');
         }
         else
         {
-            return View::make(Config::get('confide::login_form'));
+            $this->layout->content = View::make(Config::get('confide::login_form'));
         }
     }
 
@@ -91,7 +100,7 @@ class UserController extends BaseController {
         // If you wish to only allow login from confirmed users, call logAttempt
         // with the second parameter as true.
         // logAttempt will check if the 'email' perhaps is the username.
-        if ( Confide::logAttempt( $input ) ) 
+        if ( Confide::logAttempt( $input ) )
         {
             // If the session 'loginRedirect' is set, then redirect
             // to that route. Otherwise redirect to '/'
@@ -101,7 +110,7 @@ class UserController extends BaseController {
                 Session::forget('loginRedirect');
                 return Redirect::to($r);
             }
-            
+
             return Redirect::to('/'); // change it to '/admin', '/dashboard' or something
         }
         else
@@ -155,7 +164,7 @@ class UserController extends BaseController {
      */
     public function forgot_password()
     {
-        return View::make(Config::get('confide::forgot_password_form'));
+        $this->layout->content = View::make(Config::get('confide::forgot_password_form'));
     }
 
     /**
@@ -185,8 +194,8 @@ class UserController extends BaseController {
      */
     public function reset_password( $token )
     {
-        return View::make(Config::get('confide::reset_password_form'))
-                ->with('token', $token);
+        $this->layout->content = View::make(Config::get('confide::reset_password_form')
+                ->with('token', $token));
     }
 
     /**
@@ -224,7 +233,7 @@ class UserController extends BaseController {
     public function logout()
     {
         Confide::logout();
-        
+
         return Redirect::to('/');
     }
 
