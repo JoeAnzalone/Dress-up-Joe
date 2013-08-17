@@ -4,7 +4,8 @@
 	"keywords": ["framework", "laravel"],
 	"require": {
 		"laravel/framework": "4.0.*",
-		"zizaco/confide": "1.0.x"
+		"zizaco/confide": "1.0.x",
+		"way/generators": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
