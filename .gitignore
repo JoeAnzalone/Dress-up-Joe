@@ -4,3 +4,4 @@ composer.phar
 .DS_Store
 
 /app/config/database.php
+/app/config/mail.php
