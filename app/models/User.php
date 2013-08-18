@@ -20,6 +20,16 @@ class User extends ConfideUser implements UserInterface, RemindableInterface {
      */
     protected $hidden = array('password');
 
+    public function backgrounds()
+    {
+        return $this->hasMany('Background');
+    }
+
+    public function outfitsDesigned()
+    {
+        return $this->hasMany('Outfit');
+    }
+
     /**
      * Get the unique identifier for the user.
      *

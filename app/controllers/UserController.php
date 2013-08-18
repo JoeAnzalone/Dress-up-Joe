@@ -13,7 +13,7 @@ class UserController extends BaseController {
 
     protected $layout = 'layouts.default';
 
-    public function getIndex()
+    public function index()
     {
         $data['users'] = User::all();
 
