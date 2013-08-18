@@ -57,3 +57,30 @@ button:active {
     border-radius: 0.25em;
     padding: 1em;
 }
+
+h1 {
+    text-align: center;
+}
+
+.background {
+    background-color: #ddd;
+    width: 500px;
+    height: 500px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.garment {
+    position: absolute;
+    cursor: move;
+}
+
+.garment:hover,
+.garment:focus,
+.garment:active {
+    outline: 1px dashed #bbb;
+}
+
+.garment input {
+    display: none;
+}

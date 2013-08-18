@@ -21,7 +21,7 @@ class OutfitController extends BaseController {
      */
     public function create()
     {
-        //
+        $this->layout->content = View::make('outfits.create');
     }
 
     /**
@@ -31,7 +31,22 @@ class OutfitController extends BaseController {
      */
     public function store()
     {
-        //
+        $outfit = new Outfit;
+        // $outfit->garments = Input::get('garments');
+        $outfit->name = 'Exmaple outfit';
+        $outfit->user_id = Confide::user()->id;
+        $outfit->background_id = Background::first()->id;
+
+        try {
+            $outfit->save();
+        } catch (Exception $e) {
+            return Redirect::to('.')->with(
+                'response', [ 'class' => 'error', 'message' => $e->getMessage() ]
+            );
+        }
+
+        $message = '<p>Outfit saved!</p>';
+        return Redirect::to('.')->with('response', ['class' => 'success', 'message' => $message]);
     }
 
     /**
