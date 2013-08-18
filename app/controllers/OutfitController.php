@@ -9,7 +9,9 @@ class OutfitController extends BaseController {
      */
     public function index()
     {
-        //
+        $data['outfits'] = Outfit::all();
+
+        $this->layout->content = View::make('outfits.index', $data);
     }
 
     /**

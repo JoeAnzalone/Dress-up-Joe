@@ -5,8 +5,13 @@ class Background extends Eloquent {
 
     public static $rules = [];
 
-    public function owner()
+    public function user()
     {
         return $this->belongsTo('User');
+    }
+
+    public function imageUrl()
+    {
+        return URL::to('/uploads/backgrounds/' . $this->id . '.jpg');
     }
 }
