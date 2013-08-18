@@ -32,13 +32,20 @@ class OutfitController extends BaseController {
     public function store()
     {
         $outfit = new Outfit;
-        // $outfit->garments = Input::get('garments');
+        $garments = [];
+
         $outfit->name = 'Exmaple outfit';
         $outfit->user_id = Confide::user()->id;
         $outfit->background_id = Background::first()->id;
 
         try {
             $outfit->save();
+
+            foreach (Input::get('garments') as $garment) {
+                $garment = new Garment($garment);
+                $outfit->garments()->attach($garment, ['x' => $garment->x, 'y' => $garment->y]);
+            }
+
         } catch (Exception $e) {
             return Redirect::to('.')->with(
                 'response', [ 'class' => 'error', 'message' => $e->getMessage() ]

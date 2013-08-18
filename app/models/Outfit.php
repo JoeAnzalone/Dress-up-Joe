@@ -17,6 +17,6 @@ class Outfit extends Eloquent {
 
     public function garments()
     {
-        return $this->hasMany('Garment', 'garment_coordinates')->withPivot('x', 'y');
+        return $this->belongsToMany('Garment', 'garment_coordinates')->withPivot('garment_id', 'x', 'y');
     }
 }
