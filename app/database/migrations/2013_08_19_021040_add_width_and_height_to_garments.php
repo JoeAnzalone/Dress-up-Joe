@@ -11,7 +11,7 @@ class AddWidthAndHeightToGarments extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('garments', function(Blueprint $table)
+		Schema::table('garments', function($table)
 		{
 			$table->integer('width')->unsigned();
 			$table->integer('height')->unsigned();
@@ -25,7 +25,7 @@ class AddWidthAndHeightToGarments extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('garments', function(Blueprint $table)
+		Schema::table('garments', function($table)
 		{
 			$table->dropColumn('width');
 			$table->dropColumn('height');
